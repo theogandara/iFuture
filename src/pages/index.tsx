@@ -1,5 +1,8 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import React from 'react'
+import Header from '../components/Header'
+import Logo from '@images/Logo.png'
 
 const Home = () => {
   return (
@@ -10,7 +13,9 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>IFuture</h1>
+      <Header>
+        <Image alt="image" src={Logo} />
+      </Header>
     </div>
   )
 }
