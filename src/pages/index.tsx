@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import Header from '../components/Header'
 import Logo from '@images/Logo.png'
+import BannerSlogan from '@components/BannerSlogan'
 
 const Home = () => {
   return (
@@ -13,9 +14,16 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header>
-        <Image alt="image" src={Logo} />
-      </Header>
+      <div style={{ width: '100vw', minWidth: '375px' }}>
+        <Header>
+          <Image alt="image" src={Logo} />
+        </Header>
+        <BannerSlogan
+          title="Escreva um e-mail para o futuro"
+          subTitle="Se você pudesse enviar uma mensagem, igual aquelas capsulas
+           do tempo em que você vê em filmes, o que você enviaria?"
+        />
+      </div>
     </div>
   )
 }

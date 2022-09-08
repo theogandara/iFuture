@@ -1,12 +1,19 @@
 import React from 'react'
+import * as S from './styles'
 
-import { Container } from './styles'
+interface IBannerSlogan {
+  title: string
+  subTitle: string
+}
 
-const BannerSlogan: React.FC = () => {
+const BannerSlogan: React.FC<IBannerSlogan> = ({ title, subTitle }) => {
   return (
-    <Container>
-      <h1>BannerSlogan</h1>
-    </Container>
+    <S.Container>
+      <S.Box>
+        <S.Title>{title}</S.Title>
+        <S.SubTitle>{subTitle}</S.SubTitle>
+      </S.Box>
+    </S.Container>
   )
 }
 

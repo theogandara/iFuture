@@ -7,9 +7,13 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
+    html{
+      min-width: 375px;
+    }
+
     body {
         background-color: ${props => props.theme.colors.background};
-        color: ${props => props.theme.colors.text};
         font-family: 'Inter', sans-serif;
+        color: ${props => props.theme.colors.text};
     }
 `
