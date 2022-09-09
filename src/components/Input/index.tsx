@@ -35,7 +35,7 @@ const Input: React.FC<IInput> = ({
 
       <S.FeedBackContainer>
         {errorMessage && <S.Error>{errorMessage}</S.Error>}
-        {counter && (
+        {counter >= 0 && (
           <S.CounterMaxLagth>
             {counter}/{maxLength}
           </S.CounterMaxLagth>

@@ -27,29 +27,28 @@ const Home = () => {
         />
         <FormContainer>
           <Input
-            label="teste"
-            name="teste"
-            placeholder="teste"
+            label="Digite seu e-mail"
+            placeholder="seuemail@email.com"
+            name="email"
             register={() => console.log()}
-            errorMessage="theo gandara"
           />
           <Input
-            label="teste"
-            name="teste"
-            placeholder="teste"
+            label="Digite o assunto do e-mail"
+            placeholder="Assunto..."
+            name="assunto"
             register={() => console.log()}
-            counter={20}
-            maxLength={10}
-            errorMessage="theo gandara"
+            counter={0}
+            maxLength={64}
+            errorMessage="error message"
           />
           <Input
-            label="teste"
-            name="teste"
-            placeholder="teste"
+            label="Escreva a sua mensagem"
+            placeholder="Querido futuro..."
+            name="message"
             register={() => console.log()}
-            counter={20}
-            maxLength={10}
-            errorMessage="theo gandara"
+            counter={0}
+            maxLength={255}
+            errorMessage="error message"
           />
         </FormContainer>
       </div>
