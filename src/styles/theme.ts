@@ -7,6 +7,7 @@ const theme = {
     secondary: '#1835CA',
     error: '#DA1751',
     disabled: '#D7DDFB',
+    grey: '#D7DDFB',
     placeholder: '#74768A'
   }
 }

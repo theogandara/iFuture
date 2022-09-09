@@ -4,6 +4,7 @@ import React from 'react'
 import Header from '../components/Header'
 import Logo from '@images/Logo.png'
 import BannerSlogan from '@components/BannerSlogan'
+import Input from '@components/Input'
 
 const Home = () => {
   return (
@@ -23,6 +24,17 @@ const Home = () => {
           subTitle="Se você pudesse enviar uma mensagem, igual aquelas capsulas
            do tempo em que você vê em filmes, o que você enviaria?"
         />
+        <div style={{ width: '327px', margin: '100px auto' }}>
+          <Input
+            label="teste"
+            name="teste"
+            placeholder="teste"
+            register={() => console.log()}
+            counter={20}
+            maxLength={10}
+            errorMessage="theo gandara"
+          />
+        </div>
       </div>
     </div>
   )
