@@ -22,7 +22,7 @@ const Input: React.FC<IInput> = ({
   ...props
 }) => {
   return (
-    <>
+    <div>
       <S.Label>
         {label}
         <S.Input
@@ -41,7 +41,7 @@ const Input: React.FC<IInput> = ({
           </S.CounterMaxLagth>
         )}
       </S.FeedBackContainer>
-    </>
+    </div>
   )
 }
 

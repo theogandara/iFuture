@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Logo from '@images/Logo.png'
 import BannerSlogan from '@components/BannerSlogan'
 import Input from '@components/Input'
+import { FormContainer } from '@styles/pages'
 
 const Home = () => {
   return (
@@ -24,7 +25,14 @@ const Home = () => {
           subTitle="Se você pudesse enviar uma mensagem, igual aquelas capsulas
            do tempo em que você vê em filmes, o que você enviaria?"
         />
-        <div style={{ width: '327px', margin: '100px auto' }}>
+        <FormContainer>
+          <Input
+            label="teste"
+            name="teste"
+            placeholder="teste"
+            register={() => console.log()}
+            errorMessage="theo gandara"
+          />
           <Input
             label="teste"
             name="teste"
@@ -34,7 +42,16 @@ const Home = () => {
             maxLength={10}
             errorMessage="theo gandara"
           />
-        </div>
+          <Input
+            label="teste"
+            name="teste"
+            placeholder="teste"
+            register={() => console.log()}
+            counter={20}
+            maxLength={10}
+            errorMessage="theo gandara"
+          />
+        </FormContainer>
       </div>
     </div>
   )
