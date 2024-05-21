@@ -1,5 +1,11 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import React from 'react'
+import Header from '../components/Header'
+import Logo from '@images/Logo.png'
+import BannerSlogan from '@components/BannerSlogan'
+import Input from '@components/Input'
+import { FormContainer } from '@styles/pages'
 
 const Home = () => {
   return (
@@ -10,7 +16,42 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>IFuture</h1>
+      <div style={{ width: '100vw', minWidth: '375px' }}>
+        <Header>
+          <Image alt="image" src={Logo} />
+        </Header>
+        <BannerSlogan
+          title="Escreva um e-mail para o futuro"
+          subTitle="Se você pudesse enviar uma mensagem, igual aquelas capsulas
+           do tempo em que você vê em filmes, o que você enviaria?"
+        />
+        <FormContainer>
+          <Input
+            label="Digite seu e-mail"
+            placeholder="seuemail@email.com"
+            name="email"
+            register={() => console.log()}
+          />
+          <Input
+            label="Digite o assunto do e-mail"
+            placeholder="Assunto..."
+            name="assunto"
+            register={() => console.log()}
+            counter={0}
+            maxLength={64}
+            errorMessage="error message"
+          />
+          <Input
+            label="Escreva a sua mensagem"
+            placeholder="Querido futuro..."
+            name="message"
+            register={() => console.log()}
+            counter={0}
+            maxLength={255}
+            errorMessage="error message"
+          />
+        </FormContainer>
+      </div>
     </div>
   )
 }
