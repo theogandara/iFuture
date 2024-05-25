@@ -6,6 +6,10 @@ import Logo from '@images/Logo.png'
 import BannerSlogan from '@components/BannerSlogan'
 import Input from '@components/Input'
 import { FormContainer } from '@styles/pages'
+import Footer from '@components/Footer'
+import Button from '@components/Button'
+import Pill from '@components/Pill'
+import Title from '@components/Title'
 
 const Home = () => {
   return (
@@ -50,8 +54,43 @@ const Home = () => {
             maxLength={255}
             errorMessage="error message"
           />
+
+          <Title>Gostaria de receber quando?</Title>
+
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <Pill>Em 1 ano</Pill>
+            <Pill>Em 3 anos</Pill>
+            <Pill>Em 5 anos</Pill>
+          </div>
+
+          <Button>
+            Enviar e-mail para o futuro
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 12H19"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 5L19 12L12 19"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Button>
         </FormContainer>
       </div>
+      <Footer />
     </div>
   )
 }
