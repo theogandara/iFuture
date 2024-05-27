@@ -1,8 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import React from 'react'
 import Header from '../components/Header'
-import Logo from '@images/Logo.png'
 import BannerSlogan from '@components/BannerSlogan'
 import Input from '@components/Input'
 import { FormContainer } from '@styles/pages'
@@ -10,8 +8,76 @@ import Footer from '@components/Footer'
 import Button from '@components/Button'
 import Pill from '@components/Pill'
 import Title from '@components/Title'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+import { Logo } from '@components/Logo/Logo'
+
+interface FormData {
+  email: string
+  subject: string
+  content: string
+  years: number
+}
+
+const schema = z.object({
+  email: z
+    .string()
+    .email({
+      message: 'E-mail inválido'
+    })
+    .min(10, {
+      message: 'E-mail muito curto'
+    }),
+  subject: z
+    .string()
+    .min(10, {
+      message: 'Assunto muito curto'
+    })
+    .max(64, {
+      message: 'Assunto muito longo'
+    }),
+  content: z
+    .string()
+    .min(10, {
+      message: 'Conteúdo muito curto'
+    })
+    .max(255, {
+      message: 'Conteúdo muito longo'
+    }),
+  years: z.number().min(1).max(5)
+})
 
 const Home = () => {
+  const {
+    register,
+    formState: { errors },
+    watch,
+    setValue
+  } = useForm({
+    resolver: zodResolver(schema),
+    mode: 'all'
+  })
+  const { email, subject, content, years } = watch()
+  const sendData = ({ email, subject, content, years }: FormData) => {
+    fetch('/api/form', {
+      method: 'POST',
+      body: JSON.stringify({ email, subject, content, years })
+    })
+  }
+  const handleSubmit = (data: FormData) => {
+    try {
+      sendData(data)
+    } finally {
+      setValue('email', '')
+      setValue('subject', '')
+      setValue('content', '')
+      setValue('years', 0)
+    }
+  }
+  const buttonDisabled =
+    Object.keys(errors).length > 0 || !email || !subject || !content || !years
+
   return (
     <div>
       <Head>
@@ -22,7 +88,7 @@ const Home = () => {
 
       <div style={{ width: '100vw', minWidth: '375px' }}>
         <Header>
-          <Image alt="image" src={Logo} />
+          <Logo />
         </Header>
         <BannerSlogan
           title="Escreva um e-mail para o futuro"
@@ -34,36 +100,43 @@ const Home = () => {
             label="Digite seu e-mail"
             placeholder="seuemail@email.com"
             name="email"
-            register={() => console.log()}
+            register={register}
+            errorMessage={errors.email?.message?.toString()}
           />
           <Input
             label="Digite o assunto do e-mail"
             placeholder="Assunto..."
-            name="assunto"
-            register={() => console.log()}
-            counter={0}
+            name="subject"
+            register={register}
+            counter={subject?.length || 0}
             maxLength={64}
-            errorMessage="error message"
+            errorMessage={errors.subject?.message.toString()}
           />
           <Input
             label="Escreva a sua mensagem"
             placeholder="Querido futuro..."
-            name="message"
-            register={() => console.log()}
-            counter={0}
+            name="content"
+            register={register}
+            counter={content?.length || 0}
             maxLength={255}
-            errorMessage="error message"
+            errorMessage={errors.content?.message.toString()}
           />
-
           <Title>Gostaria de receber quando?</Title>
-
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <Pill>Em 1 ano</Pill>
-            <Pill>Em 3 anos</Pill>
-            <Pill>Em 5 anos</Pill>
+            <Pill onClick={() => setValue('years', 1)} isSelected={years === 1}>
+              Em 1 ano
+            </Pill>
+            <Pill onClick={() => setValue('years', 3)} isSelected={years === 3}>
+              Em 3 anos
+            </Pill>
+            <Pill onClick={() => setValue('years', 5)} isSelected={years === 5}>
+              Em 5 anos
+            </Pill>
           </div>
-
-          <Button>
+          <Button
+            disabled={buttonDisabled}
+            onClick={() => handleSubmit({ email, subject, content, years })}
+          >
             Enviar e-mail para o futuro
             <svg
               width="24"
